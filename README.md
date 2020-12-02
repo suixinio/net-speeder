@@ -71,3 +71,13 @@ Linux Cooked interface使用编译（venetX，OpenVZ）：
     
     #关闭tso
     ethtool -K 网卡名 tso off
+    
+使用bpf规则复制本机发出的包，提升上传速度，以下作为参考
+
+    复制本机发出的 tcp 包：
+    ./net_speeder venet0 "tcp and src host 本机 IP 地址" 
+    复制本机某个端口发出的 tcp 包：
+    ./net_speeder venet0 "tcp src port 端口号 and src host 本机 IP 地址"
+    复制本机多个端口发出的 tcp 包：
+    ./net_speeder venet0 "(tcp src port 端口号1 or 端口号2 or 端口号3) and src host 本机 IP 地址" 
+
